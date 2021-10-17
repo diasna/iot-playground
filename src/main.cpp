@@ -1,6 +1,17 @@
-#include <main.h>
+#define BLYNK_TEMPLATE_ID "TMPLhJqGuRzx"
+#define BLYNK_DEVICE_NAME "AC"
+#define BLYNK_AUTH_TOKEN "ziNP2lWMNVVgau6bkVhHI3ehVK2PGBAx"
 
-BlynkTimer timer;
+#define BLYNK_PRINT Serial
+
+#include <Arduino.h>
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+char auth[] = BLYNK_AUTH_TOKEN;
+
+char ssid[] = "Dias";
+char pass[] = "diaspinter123";
 
 BLYNK_WRITE(V0)
 {
@@ -15,27 +26,18 @@ BLYNK_WRITE(V0)
 
 BLYNK_CONNECTED()
 {
-    Blynk.setProperty(V3, "offImageUrl", "https://static-image.nyc3.cdn.digitaloceanspaces.com/general/fte/congratulations.png");
-    Blynk.setProperty(V3, "onImageUrl", "https://static-image.nyc3.cdn.digitaloceanspaces.com/general/fte/congratulations_pressed.png");
-    Blynk.setProperty(V3, "url", "https://docs.blynk.io/en/getting-started/what-do-i-need-to-blynk/how-quickstart-device-was-made");
-}
-
-void timerEvent()
-{
-    Blynk.virtualWrite(V2, millis() / 1000);
+    Serial.println("Blynk Connected");
 }
 
 void setup()
 {
     Serial.begin(115200);
-    Blynk.begin(auth, ssid, pass);
-    timer.setInterval(1000L, timerEvent);
-
     pinMode(LED_BUILTIN, OUTPUT);
+
+    Blynk.begin(auth, ssid, pass);
 }
 
 void loop()
 {
     Blynk.run();
-    timer.run();
 }
