@@ -7,11 +7,14 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
+#include <AR05TGHQ.cpp>
 
 char auth[] = BLYNK_AUTH_TOKEN;
 
 char ssid[] = "Dias";
 char pass[] = "diaspinter123";
+
+AR05TGHQ ac;
 
 BLYNK_WRITE(V0)
 {
@@ -35,9 +38,12 @@ void setup()
     pinMode(LED_BUILTIN, OUTPUT);
 
     Blynk.begin(auth, ssid, pass);
+
+    ac = AR05TGHQ();
 }
 
 void loop()
 {
     Blynk.run();
+    ac.set(Mode::AUTO, 22);
 }
