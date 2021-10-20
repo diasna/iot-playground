@@ -43,7 +43,7 @@ void onMessageReceived(char *topic, byte *payload, unsigned int length)
     {
         Serial.print((char)payload[i]);
     }
-    Serial.println();
+    Serial.println("");
 
     if ((char)payload[0] == '1')
     {
