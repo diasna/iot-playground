@@ -1,49 +1,110 @@
-#define BLYNK_TEMPLATE_ID "TMPLhJqGuRzx"
-#define BLYNK_DEVICE_NAME "AC"
-#define BLYNK_AUTH_TOKEN "ziNP2lWMNVVgau6bkVhHI3ehVK2PGBAx"
-
-#define BLYNK_PRINT Serial
-
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-#include <BlynkSimpleEsp8266.h>
 #include <AR05TGHQ.cpp>
+#include <PubSubClient.h>
+#include <properties.cpp>
 
-char auth[] = BLYNK_AUTH_TOKEN;
+WiFiClientSecure espClient;
+PubSubClient client(espClient);
 
-char ssid[] = "Dias";
-char pass[] = "diaspinter123";
+// AR05TGHQ ac;
 
-AR05TGHQ ac;
-
-BLYNK_WRITE(V0)
+void wifi_setup()
 {
-    int value = param.asInt();
-    Blynk.virtualWrite(V1, value);
-    if (value == 0) {
-        digitalWrite(LED_BUILTIN, HIGH);
-    } else {
+    delay(10);
+
+    Serial.println();
+    Serial.print("Connecting to ");
+    Serial.println(ssid);
+
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid, pass);
+
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(500);
+        Serial.print(".");
+    }
+
+    randomSeed(micros());
+
+    Serial.println("");
+    Serial.println("WiFi connected");
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+}
+
+void onMessageReceived(char *topic, byte *payload, unsigned int length)
+{
+    Serial.print("Message arrived [");
+    Serial.print(topic);
+    Serial.print("] ");
+    for (int i = 0; i < length; i++)
+    {
+        Serial.print((char)payload[i]);
+    }
+    Serial.println();
+
+    if ((char)payload[0] == '1')
+    {
         digitalWrite(LED_BUILTIN, LOW);
+    }
+    else
+    {
+        digitalWrite(LED_BUILTIN, HIGH);
     }
 }
 
-BLYNK_CONNECTED()
+void reconnectToBroker()
 {
-    Serial.println("Blynk Connected");
+    while (!client.connected())
+    {
+        Serial.println("Attempting MQTT connection...");
+
+        if (client.connect(mqtt_client_id, mqtt_username, mqtt_password))
+        {
+            Serial.println("connected ");
+            Serial.print(mqtt_client_id);
+
+            client.subscribe(mqtt_topic);
+        }
+        else
+        {
+            Serial.print("failed, rc=");
+            Serial.print(client.state());
+            Serial.println(" try again in 5 seconds");
+            delay(5000);
+        }
+    }
 }
 
 void setup()
 {
-    Serial.begin(115200);
     pinMode(LED_BUILTIN, OUTPUT);
 
-    Blynk.begin(auth, ssid, pass);
+    Serial.begin(115200);
 
-    ac = AR05TGHQ();
+    wifi_setup();
+
+    espClient.setFingerprint(fingerprint);
+
+    client.setServer(mqtt_server, 8883);
+    client.setCallback(onMessageReceived);
+
+    Serial.println("Done setup, turning off led...");
+
+    digitalWrite(LED_BUILTIN, HIGH);
+
+    // ac = AR05TGHQ();
 }
 
 void loop()
 {
-    Blynk.run();
-    ac.set(Mode::AUTO, 22);
+    if (!client.connected())
+    {
+        reconnectToBroker();
+    }
+    client.loop();
+
+    // ac.set(Mode::AUTO, 22);
 }
