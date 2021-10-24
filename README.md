@@ -5,3 +5,5 @@ Obtain cert fingerprint
 ```bash
 openssl s_client -connect bbce1a8cdbf94cf7b61c22aa22b7d0af.s1.eu.hivemq.cloud:8883 2>&1|openssl x509 -noout -serial
 ```
+
+Build flags such as WiFi SSID & Password can be set on [platformio.ini](platformio.ini)
