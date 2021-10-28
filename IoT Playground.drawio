@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-10-22T01:50:20.944Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50" etag="nM5jWNR13xc1XvGfvBSy" version="15.5.5" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-28T01:13:43.730Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.30" etag="dPeq8FYpWuhDZJ0so09R" version="15.5.9" type="github">
   <diagram id="ODqosPAh45oD5i2MuQGn" name="Page-1">
-    <mxGraphModel dx="2062" dy="1154" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -14,7 +14,7 @@
           <mxGeometry x="830" y="10" width="63" height="66" as="geometry" />
         </mxCell>
         <mxCell id="ePppPPMqNrW8rxgk6NDR-2" value="&lt;h2&gt;&lt;font face=&quot;Verdana&quot;&gt;TV Room&lt;/font&gt;&lt;/h2&gt;" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;dashed=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;" parent="1" vertex="1">
-          <mxGeometry x="20" y="240" width="600" height="320" as="geometry" />
+          <mxGeometry x="20" y="240" width="600" height="560" as="geometry" />
         </mxCell>
         <mxCell id="MIGvTB1lZAfxBpMD3VXP-15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;fontFamily=Verdana;startArrow=none;startFill=0;strokeColor=#66B2FF;strokeWidth=2;" parent="1" target="ePppPPMqNrW8rxgk6NDR-8" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -70,6 +70,26 @@
             </Array>
             <mxPoint x="136" y="430" as="sourcePoint" />
             <mxPoint x="490" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CfPY_9hc7FVyjd-o3wk-1" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="70" y="560" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="6CfPY_9hc7FVyjd-o3wk-2" value="ESP-01" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.instance;fillColor=#E6FFCC;gradientColor=none;fontFamily=Verdana;" vertex="1" parent="6CfPY_9hc7FVyjd-o3wk-1">
+          <mxGeometry width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="6CfPY_9hc7FVyjd-o3wk-3" value="MIC Input" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.sensor;fillColor=#5294CF;gradientColor=none;fontFamily=Verdana;" vertex="1" parent="6CfPY_9hc7FVyjd-o3wk-1">
+          <mxGeometry x="99.5" y="50" width="51" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6CfPY_9hc7FVyjd-o3wk-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#66B2FF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="860" y="100" as="targetPoint" />
+            <mxPoint x="330" y="660" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6CfPY_9hc7FVyjd-o3wk-6" value="Voice Commands" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="6CfPY_9hc7FVyjd-o3wk-5">
+          <mxGeometry x="-0.2771" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
