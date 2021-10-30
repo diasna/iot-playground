@@ -3,23 +3,11 @@
 #define XSTR(x) #x
 #define STR(x) XSTR(x)
 
-std::function<void(char *, uint8_t *, unsigned int)> callback = [](char *topic, byte *payload, unsigned int length)
-{
-    if ((char)payload[0] == '1')
-    {
-        digitalWrite(LED_BUILTIN, LOW);
-    }
-    else
-    {
-        digitalWrite(LED_BUILTIN, HIGH);
-    }
-};
-
 MQTTUtil::MQTTUtil()
 {
 }
 
-void MQTTUtil::setup()
+void MQTTUtil::setup(std::function<void(char*, uint8_t*, unsigned int)> callback)
 {
     espClient.setFingerprint(STR(BROKER_FINGERPRINT));
     client.setClient(espClient);

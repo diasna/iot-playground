@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <IRsend.h>
 
+const uint16_t kIrLed = 4;
+
 enum Mode
 {
     COOL = 1,

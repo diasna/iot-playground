@@ -9,7 +9,7 @@ class MQTTUtil
 {
 public:
     MQTTUtil();
-    void setup();
+    void setup(std::function<void(char*, uint8_t*, unsigned int)> callback);
     void listen();
     void reconnectToBroker();
 
