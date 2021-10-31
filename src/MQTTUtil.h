@@ -14,7 +14,7 @@ public:
     void reconnectToBroker();
 
 private:
-    const char *topic = "tvroom/ac";
+    const char *topic = "bedroom/rl";
 
     WiFiClientSecure espClient;
     PubSubClient client;
